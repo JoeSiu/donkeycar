@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Train an autopilot. - Donkey Car</title>
+  <title>Train an autopilot. - Donkey Car (Robocar Store)</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -34,7 +34,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-99215530-2', 'github.io/donkey');
+      ga('create', 'UA-118649236-2', 'docs.robocarstore.com');
       ga('send', 'pageview');
   </script>
   
@@ -47,7 +47,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> Donkey Car</a>
+        <a href="../.." class="icon icon-home"> Donkey Car (Robocar Store)</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -103,6 +103,8 @@
         
             <li><a class="toctree-l4" href="#train-a-model">Train a model</a></li>
         
+            <li><a class="toctree-l4" href="#optional-use-tensorrt-on-the-jetson-nano">[Optional] Use TensorRT on the Jetson Nano</a></li>
+        
             <li><a class="toctree-l4" href="#training-tips">Training Tips:</a></li>
         
         </ul>
@@ -132,10 +134,6 @@
                 <li class="">
                     
     <a class="" href="../../parts/controllers/">Controllers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parts/keras/">Keras</a>
                 </li>
                 <li class="">
                     
@@ -199,7 +197,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">Donkey Car</a>
+        <a href="../..">Donkey Car (Robocar Store)</a>
       </nav>
 
       
@@ -218,7 +216,7 @@
     <li>Train an autopilot.</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/autorope/donkeycar/edit/master/docs/guide/train_autopilot.md"
+        <a href="https://github.com/robocarstore/donkeycar/edit/master/docs/guide/train_autopilot.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -261,12 +259,7 @@ folder from the raspberry pi.</p>
 </code></pre>
 
 <ul>
-<li>
-<p>You can create different model types with the --type argument during training. You may also choose to change the default model type in myconfig.py DEFAULT_MODEL_TYPE. When specifying a new model type, be sure to provide that type when running the model, or using the model in other tools like plotting or profiling. For more information on the different model types, look here for <a href="/parts/keras">Keras Parts</a>.</p>
-</li>
-<li>
-<p>Now you can use rsync again to move your pilot back to your car.</p>
-</li>
+<li>Now you can use rsync again to move your pilot back to your car.</li>
 </ul>
 <pre><code class="bash">rsync -r ~/mycar/models/ pi@&lt;your_ip_address&gt;:~/mycar/models/
 </code></pre>
@@ -277,6 +270,8 @@ folder from the raspberry pi.</p>
 <pre><code class="bash">python manage.py drive --model ~/mycar/models/mypilot.h5
 </code></pre>
 
+<h2 id="optional-use-tensorrt-on-the-jetson-nano">[Optional] Use TensorRT on the Jetson Nano</h2>
+<p>Read <a href="/guide/robot_sbc/tensorrt_jetson_nano">this</a> for more information.</p>
 <h2 id="training-tips">Training Tips:</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4fXbDf_QWM4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -330,7 +325,7 @@ folder from the raspberry pi.</p>
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/autorope/donkeycar/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/robocarstore/donkeycar/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../get_driving/" style="color: #fcfcfc;">&laquo; Previous</a></span>
