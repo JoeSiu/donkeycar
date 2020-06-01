@@ -7,14 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>Build a car. - Donkey Car (Robocar Store)</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../../extra.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
@@ -25,7 +26,7 @@
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
   <script>
@@ -46,6 +47,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> Donkey Car (Robocar Store)</a>
         <div role="search">
@@ -56,138 +58,113 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">User Guide</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">Build a car.</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#how-to-build-a-donkey-v2">How to Build a Donkey V2</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Guide</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Build a car.</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parts-included">Parts Included:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-upgrade">Optional Upgrade</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#overview">Overview</a></li>
-        
-            <li><a class="toctree-l4" href="#parts-included">Parts Included:</a></li>
-        
-            <li><a class="toctree-l4" href="#optional-upgrade">Optional Upgrade</a></li>
-        
-            <li><a class="toctree-l4" href="#software">Software</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#lipo-battery-and-accessories">LiPo Battery and Accessories</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-1-mount-hexagon-standoff-spacer-to-base-plate">Step 1: Mount Hexagon Standoff Spacer to Base Plate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-bottoms-up-build">Option 2: Bottoms Up Build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-2-attach-raspberry-pi-servo-driver-and-voltage-converter-to-base-plate">Step 2: Attach Raspberry Pi, Servo Driver, and Voltage Converter to Base Plate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-3-connect-servo-driver-to-raspberry-pi">Step 3: Connect Servo Driver to Raspberry Pi</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-4-attach-the-mini-tamiya-splitter">Step 4: Attach the mini Tamiya splitter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-5-assemble-base-plate-and-roll-cage">Step 5: Assemble Base Plate and Roll Cage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-6-attach-the-camera-to-the-roll-cage">Step 6: Attach the camera to the roll cage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#step-6-put-it-all-together">Step 6: Put it all together</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#software">Software</a>
+    </li>
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../install_software/">Install the software.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../create_application/">Create Donkeycar App.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../calibrate/">Calibrate steering and throttle.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../get_driving/">Get driving.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../train_autopilot/">Train an autopilot.</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../simulator/">Donkey Simulator.</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Parts</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../parts/about/">About</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parts/actuators/">Actuators</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parts/controllers/">Controllers</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parts/stores/">Stores</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../parts/imu/">IMU</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Utilities</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../utility/donkey/">donkey</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../supported_cars/">Supported Cars</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../roll_your_own/">Roll Your Own</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../contribute/">Contribute</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../tests/">Tests</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../release/">Releases</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../../faq/">FAQ</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../install_software/">Install the software.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../create_application/">Create Donkeycar App.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../calibrate/">Calibrate steering and throttle.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../get_driving/">Get driving.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../train_autopilot/">Train an autopilot.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../simulator/">Donkey Simulator.</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../virtual_race_league/">Virtual Race League.</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Parts</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/about/">About</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/actuators/">Actuators</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/controllers/">Controllers</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/keras/">Keras</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/stores/">Stores</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/imu/">IMU</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/oled/">OLED</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/voice_control/">Voice Control</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Utilities</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../utility/donkey/">donkey</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../supported_cars/">Supported Cars</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roll_your_own/">Roll Your Own</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../contribute/">Contribute</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../tests/">Tests</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../release/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../legacy/">Legacy</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -219,6 +196,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -229,22 +207,20 @@
 <ul>
 <li><a href="./#overview">Overview</a></li>
 <li><a href="./#parts-included">Parts Included</a></li>
-<li><a href="./#hardware">Hardware:</a><ul>
-<li><a href="./#step-1-mount-hexagon-copper-standoff-spacer-to-base-plate">Step 1: Mount Hexagon Copper Standoff Spacer to Base Plate</a></li>
-<li><a href="./#step-2-attach-raspberry-pi-servo-driver-and-voltage-converter-to-base-plate">Step 2: Attach Raspberry Pi, Servo Driver, and Voltage Converter to Base Plate</a></li>
-<li><a href="./#step-3-assemble-base-plate-and-roll-cage">Step 3: Assemble Base Plate and Roll Cage</a></li>
-<li><a href="./#step-4-connect-servo-driver-and-voltage-converter-to-raspberry-pi">Step 4: Connect Servo Driver and Voltage Converter to Raspberry Pi</a></li>
-<li><a href="./#step-5-attach-camera">Step 5: Attach Camera</a></li>
-<li><a href="./#step-6-put-it-all-together">Step 6: Put it all together</a></li>
-</ul>
-</li>
+<li><a href="./#hardware">Hardware:</a></li>
+<li><a href="./#step-1-print-parts">Step 1: Print Parts</a></li>
+<li><a href="./#step-2-clean-up-parts">Step 2: Clean up parts</a></li>
+<li><a href="./#step-3-assemble-top-plate-and-roll-cage">Step 3: Assemble Top plate and Roll Cage</a></li>
+<li><a href="./#step-4-connect-servo-shield-to-raspberry-pi">Step 4: Connect Servo Shield to Raspberry Pi</a></li>
+<li><a href="./#step-5-attach-raspberry-pi-to-3d-printed-bottom-plate">Step 5: Attach Raspberry Pi to 3D Printed bottom plate</a></li>
+<li><a href="./#step-6-attach-camera">Step 6: Attach Camera</a></li>
+<li><a href="./#step-7-put-it-all-together">Step 7: Put it all together</a></li>
 <li><a href="../install_software/">Software</a></li>
 </ul>
-<p>&nbsp;</p>
 <h2 id="overview">Overview</h2>
 <p>These are instructions for the <a href="https://www.robocarstore.com/products/donkey-car-starter-kit">Donkey Car Starter Kit</a> purchased from <a href="https://robocarstore.com/">Robocar Store</a>.
 For instructions of the vanilla Donkey Car, please visit https://docs.donkeycar.com.</p>
-<p>For build instruction of <a href="https://www.robocarstore.com/products/donkey-car-starter-kit-jetson-nano-edition">Donkey Car Starter Kit Jetson Nano Edition</a>, please check <a href="https://docs.google.com/presentation/d/1kK9ZSLTNgCnTWqIKu-ZFEiG41jVWSFdFX3qqy_1fxSQ">this google slide</a></p>
+<p>For build instruction for <a href="https://www.robocarstore.com/products/donkey-car-starter-kit-jetson-nano-edition">Donkey Car Starter Kit Jetson Nano Edition</a>, please check <a href="https://docs.google.com/presentation/d/1kK9ZSLTNgCnTWqIKu-ZFEiG41jVWSFdFX3qqy_1fxSQ">this google slide</a></p>
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/0.jpg" /></p>
 <h2 id="parts-included">Parts Included:</h2>
 <table>
@@ -344,7 +320,7 @@ For instructions of the vanilla Donkey Car, please visit https://docs.donkeycar.
 <h2 id="optional-upgrade">Optional Upgrade</h2>
 <h3 id="lipo-battery-and-accessories">LiPo Battery and Accessories</h3>
 <p>LiPo batteries have significantly better energy density and have a better dropoff curve.  See below (courtesy of Traxxas).</p>
-<p><img alt="donkey" src="../../assets/build_hardware/traxxas.PNG" /></p>
+<p><img alt="donkey" src="../assets/build_hardware/traxxas.PNG" /></p>
 <table>
 <thead>
 <tr>
@@ -374,6 +350,7 @@ For instructions of the vanilla Donkey Car, please visit https://docs.donkeycar.
 <p>&nbsp;</p>
 <h3 id="step-1-mount-hexagon-standoff-spacer-to-base-plate">Step 1: Mount Hexagon Standoff Spacer to Base Plate</h3>
 <p>First, peel off the protective layer from the base plate. A lot of customer does not aware that this layer should be peeled off.</p>
+<h3 id="option-2-bottoms-up-build">Option 2: Bottoms Up Build</h3>
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/1a.jpg" /></p>
 <p>Mount the M2.5 Hexagon Standoff Spacer to the base plate by putting the nuts at the bottom of the base plate.</p>
 <p>Top view:
@@ -386,6 +363,7 @@ For instructions of the vanilla Donkey Car, please visit https://docs.donkeycar.
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/2a.jpg" /></p>
 <p>Note that you should be able to access the SD card from this outlet. At this point, no need to insert the SD card into the pi yet.</p>
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/2b.jpg" /></p>
+<p><img alt="donkey" src="/assets/build_hardware/traxxas.png" /></p>
 <p>&nbsp;</p>
 <h3 id="step-3-connect-servo-driver-to-raspberry-pi">Step 3: Connect Servo Driver to Raspberry Pi</h3>
 <p>Refer to the following pictures connect the pi and the servo driver.</p>
@@ -422,9 +400,7 @@ TODO: Insert our photo</p>
 <p>Second run the servo cables up to the car.  The throttle cable runs to channel 0 on the servo controller and steering is channel 1.</p>
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/7b.jpg" /></p>
 <p>Now you are done with the hardware!!</p>
-<p>&nbsp;</p>
 <h2 id="software">Software</h2>
-<p>Congrats!  Now to get your get your car moving, see the <a href="../install_software/">software instructions</a> section.</p>
 <p><img alt="donkey" src="../../assets/build_hardware/robocarstore/0.jpg" /></p>
               
             </div>
@@ -448,7 +424,7 @@ TODO: Insert our photo</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -458,7 +434,7 @@ TODO: Insert our photo</p>
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/robocarstore/donkeycar/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -474,6 +450,11 @@ TODO: Insert our photo</p>
     <script>var base_url = '../..';</script>
     <script src="../../js/theme.js" defer></script>
       <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
