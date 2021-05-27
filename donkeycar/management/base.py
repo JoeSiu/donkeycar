@@ -453,80 +453,6 @@ class Train(BaseCommand):
         else:
             print("Unrecognized framework: {}. Please specify one of 'tensorflow' or 'pytorch'".format(framework))
 
-# train remotely =====================================================================================================
-import requests
-import tempfile
-import tarfile
-from pathlib import Path
-from requests_toolbelt.multipart.encoder import MultipartEncoder
-
-class TrainRemote(BaseCommand):
-
-    @staticmethod
-    def generate_tub_archive(self, tub_paths, carapp_path):
-        print("generating tub archive")
-        f = tempfile.NamedTemporaryFile(mode='w+b', suffix='.tar.gz', delete=False)
-
-        with tarfile.open(fileobj=f, mode='w:gz') as tar:
-            for tub_path in tub_paths:
-                p = Path(tub_path)
-                tar.add(p, arcname=p.name)
-            tar.add(f"{carapp_path}/myconfig.py", arcname="myconfig.py")
-        f.close()
-
-        return f.name
-
-    @staticmethod
-    def submit_train_job(self, carapp_path, submit_job_url, tub_paths):
-        filename = self.generate_tub_archive(tub_paths, carapp_path)
-        deviceID = "device_id"
-        hostname = "hostname"
-
-        mp_encoder = MultipartEncoder(
-            fields={
-                'device_id': deviceID,
-                'hostname': hostname,
-                'tub_archive_file': ('file.tar.gz', open(filename, 'rb'), 'application/gzip'),
-            }
-        )
-
-        r = requests.post(
-            submit_job_url,
-            data=mp_encoder,  # The MultipartEncoder is posted as data, don't use files=...!
-            # The MultipartEncoder provides the content-type header with the boundary:
-            headers={'Content-Type': mp_encoder.content_type}
-        )
-
-        if (r.status_code == 200):
-            # if HTTP 200 OK
-            if ("job_uuid" in r.json()):
-                try:
-                    print(r.json()['job_uuid'])
-                except Exception as e:
-                    print(e)
-                    raise Exception("Failed to call submit job")
-            else:
-                raise Exception("Failed to call submit job")
-        else:
-            raise Exception("Failed to call submit job")
-
-    def parse_args(self, args):
-        parser = argparse.ArgumentParser(prog='train', usage='%(prog)s [options]')
-        parser.add_argument('--tub', nargs='+', help='tub data for training')
-        parser.add_argument('--server', default=None, help='url of the training server')
-        parser.add_argument('--carpath', default='.', help='path of mycar folder')
-        parsed_args = parser.parse_args(args)
-        return parsed_args
-
-    def run(self, args):
-        args = self.parse_args(args)
-        cfg = load_config(args.config)
-        if args.server :
-            self.submit_train_job(args.carpath, args.server, args.tub)
-        else:
-            self.submit_train_job(args.carpath, "https://hq.robocarstore.com/train/submit_job", args.tub)
-# =====================================================================================================
-
 def execute_from_command_line():
     """
     This is the function linked to the "donkey" terminal command.
@@ -542,7 +468,6 @@ def execute_from_command_line():
         'cnnactivations': ShowCnnActivations,
         'update': UpdateCar,
         'train': Train,
-        'trainremote': TrainRemote, 
     }
     
     args = sys.argv[:]
