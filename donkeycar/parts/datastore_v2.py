@@ -138,7 +138,7 @@ class Seekable(object):
 class Catalog(object):
     '''
     A new line delimited file that has records delimited by newlines. \n
-
+    
     [ json object record ] \n
     [ json object record ] \n
     ...
@@ -217,7 +217,7 @@ class CatalogMetadata(object):
 class Manifest(object):
     '''
     A newline delimited file, with the following format.
-
+    
     [ json array of inputs ]\n
     [ json array of types ]\n
     [ json object with user metadata ]\n
@@ -292,6 +292,10 @@ class Manifest(object):
         self.deleted_indexes.add(record_index)
         self._update_catalog_metadata(update=True)
 
+    def update_metadata(self, metadata):
+        self.metadata = {**self.metadata, **metadata}
+        self._write_contents()
+        
     def restore_record(self, record_index):
         # Does not actually delete the record, but marks it as deleted.
         self.deleted_indexes.discard(record_index)
@@ -387,7 +391,7 @@ class Manifest(object):
 class ManifestIterator(object):
     """
     An iterator for the Manifest type. \n
-
+    
     Returns catalog entries lazily when a consumer calls __next__().
     """
     def __init__(self, manifest):
@@ -437,3 +441,4 @@ class ManifestIterator(object):
 
     def __len__(self):
         return self.manifest.__len__()
+        
