@@ -33,6 +33,12 @@ dependencies:
   - numpy
   - tensorflow=2.2.0
   - psutil
+  - socket
+  - requests
+  - tempfile
+  - tarfile
+  - requests_toolbelt
+  - netifaces
   - pip:
     - git+https://github.com/autorope/keras-vis.git
     - simple-pid
