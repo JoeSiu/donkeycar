@@ -351,49 +351,64 @@ class ShowCnnActivations(BaseCommand):
         activations = self.get_activations(args.image, args.model, cfg)
         self.create_figure(activations)
 
-# class ShowHistogram(BaseCommand):
+class ShowHistogram(BaseCommand):
 
-#     def parse_args(self, args):
-#         parser = argparse.ArgumentParser(prog='tubhist', usage='%(prog)s [options]')
-#         parser.add_argument('--tub', nargs='+', help='paths to tubs')
-#         parser.add_argument('--record', default=None, help='name of record to create histogram')
-#         parser.add_argument('--out', default=None, help='path where to save histogram end with .png')
-#         parsed_args = parser.parse_args(args)
-#         return parsed_args
+    def parse_args(self, args):
+        parser = argparse.ArgumentParser(prog='tubhist', usage='%(prog)s [options]')
+        parser.add_argument('--tub', nargs='+', help='paths to tubs')
+        parser.add_argument('--record', default=None, help='name of record to create histogram')
+        parser.add_argument('--out', default=None, help='path where to save histogram end with .png')
+        parsed_args = parser.parse_args(args)
+        return parsed_args
 
-#     def show_histogram(self, tub_paths, record_name, out):
-#         '''
-#         Produce a histogram of record type frequency in the given tub
-#         '''
-#         from matplotlib import pyplot as plt
-#         from donkeycar.parts.datastore import TubGroup
+    def show_histogram(self, tub_paths, record_name, out):
+        '''
+        Produce a histogram of record type frequency in the given tub
+        '''
+        from matplotlib import pyplot as plt
+        from donkeycar.parts.datastore import TubGroup
+        from donkeycar.parts.tub_v2 import Tub
+        import pandas as pd
+        output = out or os.path.basename(tub_paths)
 
-#         output = out or os.path.basename(tub_paths)
-#         tg = TubGroup(tub_paths=tub_paths)
+        base_path = Path(os.path.expanduser(tub_paths)).absolute().as_posix()
+        tub = Tub(base_path)
+        records = list(tub)
+        user_angles = []
+        user_throttles = []
 
-#         if record_name is not None:
-#             tg.df[record_name].hist(bins=50)
-#         else:
-#             tg.df.hist(bins=50)
+        for record in records:
+            user_angle = float(record["user/angle"])
+            user_throttle = float(record["user/throttle"])
+
+            user_angles.append(user_angle)
+            user_throttles.append(user_throttle)
+
+        df = pd.DataFrame({'user_angle': user_angles, 'user_throttle': user_throttles})
+
+        if record_name is not None:
+            df[record_name].hist(bins=50)
+        else:
+            df.hist(bins=50)
   
-#         try:
-#             if out is not None:
-#                 filename = output
-#             else:
-#                 if record_name is not None:
-#                     filename = output + '_hist_%s.png' % record_name.replace('/', '_')
-#                 else:
-#                     filename = output + '_hist.png'
-#             plt.savefig(filename)
-#             print('saving image to:', filename)
-#         except Exception as e:
-#             print(e)
-#         plt.show()
+        try:
+            if out is not None:
+                filename = output
+            else:
+                if record_name is not None:
+                    filename = output + '_hist_%s.png' % record_name.replace('/', '_')
+                else:
+                    filename = output + '_hist.png'
+            plt.savefig(filename)
+            print('saving image to:', filename)
+        except Exception as e:
+            print(e)
+        # plt.show()
 
-#     def run(self, args):
-#         args = self.parse_args(args)
-#         args.tub = ','.join(args.tub)
-#         self.show_histogram(args.tub, args.record, args.out)
+    def run(self, args):
+        args = self.parse_args(args)
+        args.tub = ','.join(args.tub)
+        self.show_histogram(args.tub, args.record, args.out)
         
 class ShowPredictionPlots(BaseCommand):
 
@@ -675,7 +690,7 @@ def execute_from_command_line():
         'findcar': FindCar,
         'calibrate': CalibrateCar,
         'tubclean': TubManager,
-        # 'tubhist': ShowHistogram,
+        'tubhist': ShowHistogram,
         'tubplot': ShowPredictionPlots,
         'makemovie': MakeMovieShell,
         'createjs': CreateJoystick,
