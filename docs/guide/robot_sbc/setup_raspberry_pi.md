@@ -2,37 +2,57 @@
 
 ![donkey](/assets/logos/rpi_logo.png)
 
-* [Step 1: Flash Operating System](#step-1-flash-operating-system)
-* [Step 2: Setup the WiFi for First Boot](#step-2-setup-the-wifi-for-first-boot)
-* [Step 3: Setup Pi's Hostname](#step-3-setup-pis-hostname)
-* [Step 4: Enable SSH on Boot](#step-4-enable-ssh-on-boot)
-* [Step 5: Connecting to the Pi](#step-5-connecting-to-the-pi)
-* [Step 6: Update and Upgrade](#step-6-update-and-upgrade)
-* [Step 7: Raspi-config](#step-7-raspi-config)
-* [Step 8: Install Dependencies](#step-8-install-dependencies)
-* [Step 9: Install Optional OpenCV Dependencies](#step-9-install-optional-opencv-dependencies)
-* [Step 10: Setup Virtual Env](#step-10-setup-virtual-env)
-* [Step 11: Install Donkeycar Python Code](#step-11-install-donkeycar-python-code)
-* [Step 12: Install Optional OpenCV](#step-12-install-optional-opencv)
-* Then [Create your Donkeycar Application](/guide/create_application/)
+- [Get Your Raspberry Pi Working](#get-your-raspberry-pi-working)
+  - [Step 1: Flash the SD Card](#step-1-flash-the-sd-card)
+    - [Robocar Store Pre-built image](#robocar-store-pre-built-image)
+    - [Ground up install](#ground-up-install)
+  - [Step 2: Setup the WiFi for first boot](#step-2-setup-the-wifi-for-first-boot)
+  - [Step 3: Setup Pi's Hostname](#step-3-setup-pis-hostname)
+  - [Step 4: Enable SSH on Boot](#step-4-enable-ssh-on-boot)
+  - [Step 5: Connecting to the Pi](#step-5-connecting-to-the-pi)
+  - [Step 6: Update and Upgrade](#step-6-update-and-upgrade)
+  - [Step 7: Raspi-config](#step-7-raspi-config)
+  - [Step 8: Install Dependencies](#step-8-install-dependencies)
+  - [Step 9: Optional - Install OpenCV Dependencies](#step-9-optional---install-opencv-dependencies)
+  - [Step 10: Setup Virtual Env](#step-10-setup-virtual-env)
+  - [Step 11: Install Donkeycar Python Code](#step-11-install-donkeycar-python-code)
+  - [Step 12: Optional - Install OpenCV](#step-12-optional---install-opencv)
+    - [Next, create your Donkeycar application.](#next-create-your-donkeycar-application)
 
-## Step 1: Flash Operating System
+## Step 1: Flash the SD Card
+
+### Robocar Store Pre-built image
+
+Robocar Store provide a pre-built image so you can just use software like Etcher to quickly get started. If you are using this image, you still need to perform step 2-5 below but you can skip step 6 - 10 as we have done that for you. You will probably save around 30 - 45 minutes if you use this image.
+
+* Donkey Car v3.0.2 on Stretch - [Download](https://www.dropbox.com/s/27bt4ut6fufg1nb/robocarstore_dk302_stretch.zip?dl=0)
+* Donkey Car v3.1.0 on Stretch - [Download](https://www.dropbox.com/s/z8uhfoetlxwpsua/robocarstore_dk310_stretch.img.gz?dl=0)
+
+hostname: raspberrypi
+
+* Donkey Car v3.1.0 on Buster (Pi 4) - [Download](https://www.dropbox.com/s/a7booipqanalh2d/robocarstore_dk310_buster.img.gz?dl=0)
+
+hostname: pi4
+
+
+The uncompressed image will be around 16GB. Download [Etcher](https://www.balena.io/etcher/) and burn the image to the SD card. As we have shrinked the partition to improve the speed to burn the image, you need to expand the partition by running `sudo raspi-config`. If in doubt, check how to do this on google.
+
+
+### Ground up install
 
 > Note:  If you plan to use the mobile app, consider using the pre-built image. Refer to the [mobile app user guide](../mobile_app.md) for details. 
 
 You need to flash a micro SD image with an operating system.
 
-1. Download [Latest Raspian(Buster)](https://downloads.raspberrypi.org/raspbian_lite_latest). 
+1. Download [Raspian Lite(Stretch)](https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2019-04-09/2019-04-08-raspbian-stretch-lite.zip) (352MB).
 2. Follow OS specific guides [here](https://www.raspberrypi.org/documentation/installation/installing-images/).
 3. Leave micro SD card in your machine and edit/create some files as below:
 
 ## Step 2: Setup the WiFi for first boot
 
-We can create a special file which will be used to login to wifi on first boot. More reading [here](https://raspberrypi.stackexchange.com/questions/10251/prepare-sd-card-for-wifi-on-headless-pi), but we will walk you through it. 
+We can create a special file which will be used to login to wifi on first boot. More reading [here](https://raspberrypi.stackexchange.com/questions/10251/prepare-sd-card-for-wifi-on-headless-pi), but we will walk you through it.
 
-On Windows, with your memory card image burned and memory disc still inserted, you should see two drives, which are actually two partitions on the mem disc.
-One is labeled __boot__. On Mac and Linux, you should also have access to the __boot__ partition of the mem disc.
-This is formatted with the common FAT type and is where we will edit some files to help it find and log-on to your wifi on its first boot. 
+On Windows, with your memory card image burned and memory disc still inserted, you should see two drives, which are actually two partitions on the mem disc. One is labeled __boot__. On Mac and Linux, you should also have access to the __boot__ partition of the mem disc. This is formated with the common FAT type and is where we will edit some files to help it find and log-on to your wifi on it's first boot.
 
 > Note: If __boot__ is not visible right away, try unplugging and re-inserting the memory card reader.
 
@@ -55,7 +75,7 @@ network={
 Note - `country` defines allowed wifi channels, ensure to set it properly to your location and hardware.
 
 Replace `<your network name>` with the ID of your network. Leave the quotes. I've seen problems when the network name contained an apostrophe, like "Joe's iPhone".
-Replace `<your password>` with your password, leaving it surrounded by quotes. 
+Replace `<your password>` with your password, leaving it surrounded by quotes.
 If it bothers you to leave your password unencrypted, you may change the [contents later](https://unix.stackexchange.com/questions/278946/hiding-passwords-in-wpa-supplicant-conf-with-wpa-eap-and-mschap-v2) once you've gotten the pi to boot and log-in.
 
 * Save this file to the root of __boot__ partition with the filename `wpa_supplicant.conf`. On first boot, this file will be moved to `/etc/wpa_supplicant/wpa_supplicant.conf` where it may be edited later. If you are using Notepad on Windows, make sure it doesn't have a .txt at the end.
@@ -64,17 +84,13 @@ If it bothers you to leave your password unencrypted, you may change the [conten
 
 > Note: This step only possible on a Linux host pc. Otherwise you can set it up later in `raspi-config` after logging in to your pi.
 
-We can also setup the hostname so that your Pi easier to find once on the network. If yours is the only Pi on the network, then you can find it with 
+We can also setup the hostname so that your Pi easier to find once on the network. If yours is the only Pi on the network, then you can find it with
 
 ```bash
 ping raspberrypi.local
 ```
 
-once it's booted. If there are many other Pi's on the network, then this will have problems.
-If you are on a Linux machine, or are able to edit the UUID partition, then you can edit the `/etc/hostname` and `/etc/hosts` files now to make finding your pi on the network easier after boot.
-Edit those to replace `raspberrypi` with a name of your choosing.
-Use all lower case, no special characters, no hyphens, yes underscores `_`. 
-Good idea is to use something like `pi-<MAC_ADDRESS>` such as `pi-deadbeef` especially if you have more pi devices in the same network.
+once it's booted. If there are many other Pi's on the network, then this will have problems. If you are on a Linux machine, or are able to edit the UUID partition, then you can edit the `/etc/hostname` and `/etc/hosts` files now to make finding your pi on the network easier after boot. Edit those to replace `raspberrypi` with a name of your choosing. Use all lower case, no special characters, no hyphens, yes underscores `_`.
 
 ```bash
 sudo vi /media/userID/UUID/etc/hostname
@@ -85,29 +101,24 @@ sudo vi /media/userID/UUID/etc/hosts
 
 Put a file named __ssh__ in the root of your __boot__ partition.
 
-Now your SD card is ready. Eject it from your computer - wait until system shows the writing is done
-and it is safe to remove card. Ensure Pi is turned off, put the card in the Pi and power on the Pi.
+
+Now you're SD card is ready. Eject it from your computer, put it in the Pi
+and plug in the Pi.
+
 
 ## Step 5: Connecting to the Pi
 
-If you followed the above instructions to add wifi access, your Pi should
-now be connected to your wifi network. Now you need to find its IP address
-so you can connect to it via SSH. 
+If you followed the above instructions to add wifi access you're Pi should
+now be connected to your wifi network. Now you need to find it's IP address
+so you can connect to it via SSH.
 
-The easiest way (on Ubuntu) is to use the `findcar` donkey command.
-You can try `ping raspberrypi.local`. If you've modified the hostname, then you should try:
-
-```bash
-ping <your hostname>.local
-```
-
-This will fail on a windows machine. Windows users will need the full IP address (unless using cygwin). 
+The easiest way (on Ubuntu) is to use the `findcar` donkey command. You can try `ping raspberrypi.local`. If you've modified the hostname, then you should try: `ping <your hostname>.local`. This will fail on a windows machine. Windows users will need the full IP address (unless using cygwin).
 
 If you are having troubles locating your Pi on the network, you will want to plug in an HDMI monitor and USB keyboard into the Pi. Boot it. Login with:
 
-* Username: `pi`
-* Password: `raspberry`
- 
+* Username: __pi__
+* Password: __raspberry__
+
 Then try the command:
 
 ```bash
@@ -220,10 +231,10 @@ cd donkeycar
 git checkout master
 pip install -e .[pi]
 pip install numpy --upgrade
-curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=1AUlqf3oosa6FLlkQgO-NSO1Ur2YutG9o" > /dev/null
-CODE="$(awk '/_warning_/ {print $NF}' /tmp/cookie)"
-curl -Lb /tmp/cookie "https://drive.google.com/uc?export=download&confirm=${CODE}&id=1AUlqf3oosa6FLlkQgO-NSO1Ur2YutG9o" -o tensorflow-2.0.0-cp37-cp37m-linux_armv7l.whl
-pip install tensorflow-2.0.0-cp37-cp37m-linux_armv7l.whl
+wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.3.1-cp37-none-linux_armv7l_download.sh"
+chmod u+x tensorflow-2.3.1-cp37-none-linux_armv7l_download.sh
+tensorflow-2.3.1-cp37-none-linux_armv7l_download.sh
+pip install tensorflow-2.3.1-cp37-none-linux_armv7l.whl
 ```
 
 You can validate your tensorflow install with

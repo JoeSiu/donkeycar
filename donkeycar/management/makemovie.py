@@ -216,7 +216,6 @@ class MakeMovie(object):
         salient_mask = self.compute_visualisation_mask(norm_img)
         salient_mask_stacked = cm.inferno(salient_mask)[:,:,0:3]
         salient_mask_stacked = cv2.GaussianBlur(salient_mask_stacked,(3,3),cv2.BORDER_DEFAULT)
-        # img = cv2.GaussianBlur(img,(3,3),cv2.BORDER_DEFAULT)
         blend = cv2.addWeighted(img.astype('float32'), alpha, salient_mask_stacked.astype('float32'), beta, 0)
         return blend
 
@@ -237,7 +236,6 @@ class MakeMovie(object):
 
         if self.do_salient:
             image = self.draw_salient(image)
-            # image = np.power(image, 0.7)
             image = cv2.normalize(src=image, dst=None, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
 
         if self.user: self.draw_user_input(rec, image)
