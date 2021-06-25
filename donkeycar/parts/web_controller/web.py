@@ -97,7 +97,7 @@ class RemoteWebServer():
 
 class LocalWebController(tornado.web.Application):
 
-    def __init__(self, port=8887, mode='user'):
+    def __init__(self, port=8887, mode='user', check_inert=True):
         '''
         Create and publish variables needed on many of
         the web handlers.
@@ -117,6 +117,8 @@ class LocalWebController(tornado.web.Application):
         self.wsclients = []
         self.loop = None
 
+        self.dead_zone = 0.05
+        self.check_inert = check_inert # to check whether the car is inert
 
         handlers = [
             (r"/", RedirectHandler, dict(url="/drive")),
@@ -159,6 +161,11 @@ class LocalWebController(tornado.web.Application):
         self.img_arr = img_arr
         self.num_records = num_records
 
+        # if throttle and angle are outside the dead zone (i.e. the car is inert), stop recording
+        if self.check_inert and self.recording and self.mode == 'user':
+            print("run_threaded(): Zero Throttle and Zero Angle")
+            self.recording = (abs(self.throttle) > self.dead_zone or abs(self.angle) > self.dead_zone)
+       
         # Send record count to websocket clients
         if (self.num_records is not None and self.recording is True):
             if self.num_records % 10 == 0:
@@ -169,6 +176,12 @@ class LocalWebController(tornado.web.Application):
 
     def run(self, img_arr=None):
         self.img_arr = img_arr
+
+        # if throttle and angle are outside the dead zone (i.e. the car is inert), stop recording
+        if self.check_inert and self.recording and self.mode == 'user':
+            print("run_threaded(): Zero Throttle and Zero Angle")
+            self.recording = (abs(self.throttle) > self.dead_zone or abs(self.angle) > self.dead_zone)
+       
         return self.angle, self.throttle, self.mode, self.recording
 
     def shutdown(self):
