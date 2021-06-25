@@ -6,6 +6,7 @@ import socket
 import stat
 import sys
 from socket import *
+from pathlib import Path
 
 from progress.bar import IncrementalBar
 import donkeycar as dk
