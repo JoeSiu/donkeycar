@@ -163,7 +163,6 @@ class LocalWebController(tornado.web.Application):
 
         # if throttle and angle are outside the dead zone (i.e. the car is inert), stop recording
         if self.check_inert and self.recording and self.mode == 'user':
-            print("run_threaded(): Zero Throttle and Zero Angle")
             self.recording = (abs(self.throttle) > self.dead_zone or abs(self.angle) > self.dead_zone)
        
         # Send record count to websocket clients
@@ -179,7 +178,6 @@ class LocalWebController(tornado.web.Application):
 
         # if throttle and angle are outside the dead zone (i.e. the car is inert), stop recording
         if self.check_inert and self.recording and self.mode == 'user':
-            print("run_threaded(): Zero Throttle and Zero Angle")
             self.recording = (abs(self.throttle) > self.dead_zone or abs(self.angle) > self.dead_zone)
        
         return self.angle, self.throttle, self.mode, self.recording

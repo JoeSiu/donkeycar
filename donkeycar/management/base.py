@@ -671,7 +671,7 @@ class TrainRemote(BaseCommand):
                     print(f"Model Movie URL: {result['model_movie_url']}")
 
                     if not os.path.isdir(f"{car_path}/movies/"):
-                        logger.info(f"Creating movie folder '{car_path}/movies/' ")
+                        print(f"Creating movie folder '{car_path}/movies/' ")
                         os.mkdir(f"{car_path}/movies/")
 
                     command = ["curl", "--fail", result['model_url'], "--output", f"{car_path}/models/{model_name}.h5"]

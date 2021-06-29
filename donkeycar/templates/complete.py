@@ -187,7 +187,11 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
 
     #This web controller will create a web server that is capable
     #of managing steering, throttle, and modes, and more.
-    ctr = LocalWebController(port=cfg.WEB_CONTROL_PORT, mode=cfg.WEB_INIT_MODE, check_inert=cfg.WEB_CHECK_CAR_INERT)
+    
+    if hasattr(cfg, "WEB_CHECK_CAR_INERT"):
+        ctr = LocalWebController(port=cfg.WEB_CONTROL_PORT, mode=cfg.WEB_INIT_MODE, check_inert=cfg.WEB_CHECK_CAR_INERT)
+    else:
+        ctr = LocalWebController(port=cfg.WEB_CONTROL_PORT, mode=cfg.WEB_INIT_MODE)
     
     V.add(ctr,
         inputs=['cam/image_array', 'tub/num_records'],
