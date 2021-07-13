@@ -185,6 +185,11 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
             
         V.add(cam, inputs=inputs, outputs=outputs, threaded=threaded)
 
+    if cfg.INFO_OVERLAY:
+        from donkeycar.parts.info_overlay import InfoOverlayLogger, InfoOverlayWritter
+        V.add(InfoOverlayLogger(), inputs=['fps/current', 'user/mode', 'user/throttle', 'user/angle', 'pilot/throttle', 'pilot/angle'], outputs=['info/info_list'])
+        V.add(InfoOverlayWritter(cfg.IMAGE_W, cfg.IMAGE_H), inputs=['cam/image_array'], outputs=['cam/image_array'])
+
     if cfg.SHOW_FPS:
         from donkeycar.parts.fps import FpsTimer, FpsLogger
         V.add(FpsTimer(), outputs=["fps/current", "fps/fps_list"])
