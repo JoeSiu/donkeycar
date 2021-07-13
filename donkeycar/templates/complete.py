@@ -185,6 +185,11 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
             
         V.add(cam, inputs=inputs, outputs=outputs, threaded=threaded)
 
+    if cfg.SHOW_FPS:
+        from donkeycar.parts.fps import FpsTimer, FpsLogger
+        V.add(FpsTimer(), outputs=["fps/current", "fps/fps_list"])
+        V.add(FpsLogger(), inputs=["fps/current", "fps/fps_list"])
+
     #This web controller will create a web server that is capable
     #of managing steering, throttle, and modes, and more.
     
