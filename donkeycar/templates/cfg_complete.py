@@ -352,7 +352,7 @@ STOP_SIGN_SHOW_BOUNDING_BOX = True
 STOP_SIGN_MAX_REVERSE_COUNT = 10    # How many times should the car reverse when detected a stop sign, set to 0 to disable reversing
 
 # Info overlay
-INFO_OVERLAY = True
+INFO_OVERLAY = False
 
 # FPS counter
-SHOW_FPS = True
+SHOW_FPS = False
