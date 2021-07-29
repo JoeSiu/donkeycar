@@ -204,7 +204,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
 
     if cfg.INFO_OVERLAY:
         V.add(ctr,
-              inputs=['overlay/image_array', 'tub/num_records'],
+              inputs=['overlay/image_array', 'tub/num_records', 'overlay/info_list'],
               outputs=['user/angle', 'user/throttle', 'user/mode', 'recording'],
               threaded=True)
     else:

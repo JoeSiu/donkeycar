@@ -149,7 +149,8 @@ class LocalWebController(tornado.web.Application):
         for wsclient in self.wsclients:
             try:
                 data = {
-                    'num_records': self.num_records
+                    'num_records': self.num_records,
+                    'info_list': self.info_list
                 }
                 data_str = json.dumps(data)
                 wsclient.write_message(data_str)
@@ -157,19 +158,24 @@ class LocalWebController(tornado.web.Application):
                 print(e)
                 pass
 
-    def run_threaded(self, img_arr=None, num_records=0):
+    def run_threaded(self, img_arr=None, num_records=0, info_list=None):
         self.img_arr = img_arr
         self.num_records = num_records
+        self.info_list = info_list
 
         # if throttle and angle are outside the dead zone (i.e. the car is inert), stop recording
         if self.check_inert and self.recording and self.mode == 'user':
             self.recording = (abs(self.throttle) > self.dead_zone or abs(self.angle) > self.dead_zone)
+        
+        # Send data to websocket clients on each loop
+        if self.loop is not None:
+            self.loop.add_callback(self.update_wsclients)
        
         # Send record count to websocket clients
-        if (self.num_records is not None and self.recording is True):
-            if self.num_records % 10 == 0:
-                if self.loop is not None:
-                    self.loop.add_callback(self.update_wsclients)
+#         if (self.num_records is not None and self.recording is True):
+#             if self.num_records % 10 == 0:
+#                 if self.loop is not None:
+#                     self.loop.add_callback(self.update_wsclients)
 
         return self.angle, self.throttle, self.mode, self.recording
 
