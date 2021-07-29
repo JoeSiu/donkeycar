@@ -193,8 +193,10 @@ SEQUENCE_LENGTH = 3             #some models use a number of images over time. T
 
 #IMU
 HAVE_IMU = False                #when true, this add a Mpu6050 part and records the data. Can be used with a
-IMU_SENSOR = 'mpu6050'          # (mpu6050|mpu9250)
-IMU_DLP_CONFIG = 0              # Digital Lowpass Filter setting (0:250Hz, 1:184Hz, 2:92Hz, 3:41Hz, 4:20Hz, 5:10Hz, 6:5Hz)
+IMU_SENSOR = 'mpu9250'          # (mpu6050|mpu9250)
+IMU_ADDRESS = 0x69              # Default address for mpu9250 on mm1 is 0x69
+IMU_POLL_DELAY = 0.5            # Delay in seconds for polling value from IMU
+# IMU_DLP_CONFIG = 0            # Digital Lowpass Filter setting (0:250Hz, 1:184Hz, 2:92Hz, 3:41Hz, 4:20Hz, 5:10Hz, 6:5Hz)
 
 #SOMBRERO
 HAVE_SOMBRERO = False           #set to true when using the sombrero hat from the Donkeycar store. This will enable pwm on the hat.
